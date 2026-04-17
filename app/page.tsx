@@ -63,7 +63,7 @@ export default async function Home() {
               记录技术、阅读和生活的温柔角落
             </h1>
             <p className="max-w-2xl text-base leading-8 text-[#5b5b5b] md:text-lg">
-              你好，我是 Eason。这里是我的长期写作空间，分享工程实践、内容创作和审美观察。
+              你好，我是 清濑灰二。这里是我的长期写作空间，分享工程实践、内容创作和审美观察。
               希望每次更新，都像翻开一本刚刚印好的独立杂志。
             </p>
           </div>
