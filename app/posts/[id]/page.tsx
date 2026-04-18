@@ -1,3 +1,4 @@
+import { ArticleMarkdown } from "@/components/article-markdown";
 import { SiteHeader } from "@/components/site-header";
 import { getApiBase } from "@/lib/api";
 import type { ApiResult, Post } from "@/lib/api-types";
@@ -66,9 +67,11 @@ export default async function PostDetailPage({
           </p>
         ) : null}
 
-        <div className="article-body whitespace-pre-wrap break-words text-[17px] leading-[1.85] text-[#333] md:text-lg md:leading-[1.9]">
-          {post.content.trim() ? post.content : "暂无正文"}
-        </div>
+        {post.content.trim() ? (
+          <ArticleMarkdown content={post.content} />
+        ) : (
+          <p className="text-[17px] text-muted-foreground">暂无正文</p>
+        )}
 
         <p className="mt-14 border-t border-[#e8e6e2] pt-10 text-center">
           <Link href="/#posts" className="text-sm text-[#666] hover:text-foreground">
