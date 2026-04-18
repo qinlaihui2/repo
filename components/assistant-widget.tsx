@@ -80,7 +80,7 @@ export function AssistantWidget() {
         )}
       >
         {open ? <X className="h-5 w-5" aria-hidden /> : <MessageCircle className="h-5 w-5" aria-hidden />}
-        <span className="sr-only">{open ? "关闭名著小助手" : "打开名著小助手"}</span>
+        <span className="sr-only">{open ? "关闭答案之书" : "打开答案之书"}</span>
       </button>
 
       {open ? (
@@ -88,14 +88,14 @@ export function AssistantWidget() {
           id="assistant-panel"
           role="dialog"
           aria-modal="false"
-          aria-label="名著小助手"
+          aria-label="答案之书"
           className={cn(
             "fixed bottom-[5.25rem] right-6 z-[95] flex max-h-[min(420px,70vh)] w-[min(100vw-2rem,380px)] flex-col overflow-hidden rounded-2xl shadow-xl",
             "border border-[#e9e4db] bg-[#fffdf9] dark:border-[#333] dark:bg-[#1c1c1c]"
           )}
         >
           <div className="flex items-center justify-between border-b border-[#ebe6df] px-4 py-3 dark:border-[#333]">
-            <p className="font-serif text-base font-medium text-[#2d2d2d] dark:text-[#eee]">名著小助手</p>
+            <p className="font-serif text-base font-medium text-[#2d2d2d] dark:text-[#eee]">答案之书</p>
             <button
               type="button"
               onClick={clearChat}
@@ -109,7 +109,7 @@ export function AssistantWidget() {
           <div className="min-h-[200px] flex-1 space-y-3 overflow-y-auto px-4 py-3 text-sm leading-relaxed">
             {msgs.length === 0 && !loading ? (
               <p className="text-[#6a6a6a] dark:text-[#aaa]">
-                你好。我可以陪你聊名著与阅读；我会尽量引用经典表述，并标注作品或作者（不确定处会说明）。
+                向答案之书提问…
               </p>
             ) : null}
             {msgs.map((m, i) => (
