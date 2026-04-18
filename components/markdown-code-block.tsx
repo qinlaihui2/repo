@@ -2,9 +2,9 @@
 
 import { cn } from "@/lib/utils";
 import { useCallback, useState, useSyncExternalStore } from "react";
-import oneDark from "react-syntax-highlighter/dist/cjs/styles/prism/one-dark";
-import oneLight from "react-syntax-highlighter/dist/cjs/styles/prism/one-light";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+// 从 CJS 主题包入口导入，避免子路径在 Vercel / Turbopack 下解析失败
+import { oneDark, oneLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 function subscribePrefersDark(callback: () => void) {
   const mq = window.matchMedia("(prefers-color-scheme: dark)");
