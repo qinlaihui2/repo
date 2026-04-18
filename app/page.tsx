@@ -1,6 +1,7 @@
 import { SiteHeader } from "@/components/site-header";
 import { getApiBase } from "@/lib/api";
 import type { ApiResult, PostSummary } from "@/lib/api-types";
+import Link from "next/link";
 
 async function getPosts(): Promise<PostSummary[]> {
   const apiBase = getApiBase();
@@ -63,14 +64,19 @@ export default async function Home() {
           ) : (
             <div className="grid gap-5 md:grid-cols-3">
               {posts.map((post) => (
-                <article key={post.id} className="mag-card rounded-xl p-5 transition hover:-translate-y-0.5">
+                <Link
+                  key={post.id}
+                  href={`/posts/${post.id}`}
+                  className="mag-card block rounded-xl p-5 transition hover:-translate-y-0.5 hover:opacity-[0.98]"
+                >
                   <p className="mb-3 text-xs tracking-[0.18em] text-[#7f7b74]">最新发布</p>
-                  <h4 className="mb-3 text-xl leading-snug">{post.title}</h4>
+                  <h4 className="mb-3 text-xl leading-snug text-foreground">{post.title}</h4>
                   <p className="mb-4 text-sm leading-7 text-[#606060]">{post.summary}</p>
                   <p className="text-sm text-[#696969]">
                     {new Date(post.createdAt).toLocaleDateString("zh-CN")}
                   </p>
-                </article>
+                  <p className="mt-4 text-xs tracking-wide text-[#7a7a7a]">阅读全文 →</p>
+                </Link>
               ))}
             </div>
           )}
