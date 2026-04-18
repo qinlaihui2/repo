@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Geist } from "next/font/google";
 import "./globals.css";
+import "./prism-themes.css";
+import { ReadingProgress } from "@/components/reading-progress";
 import { cn } from "@/lib/utils";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
@@ -44,7 +46,10 @@ export default function RootLayout({
       lang="zh-CN"
       className={cn("h-full", "antialiased", inter.variable, playfair.variable, "font-sans", geist.variable)}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <ReadingProgress />
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,0 +1,6 @@
+/* 清爽代码主题：亮色为主；系统深色时切换 one-dark（与 prefers-color-scheme 对齐） */
+@import "prism-themes/themes/prism-one-light.css";
+
+@media (prefers-color-scheme: dark) {
+  @import "prism-themes/themes/prism-one-dark.css";
+}
