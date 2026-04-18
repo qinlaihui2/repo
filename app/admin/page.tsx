@@ -9,8 +9,8 @@ const apiBase = getApiBase();
 
 export default function AdminPage() {
   const [token, setToken] = useState("");
-  const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("123456");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
@@ -98,13 +98,28 @@ export default function AdminPage() {
       <SiteHeader />
       <main className="mx-auto w-full max-w-5xl px-6 py-10 md:px-10">
       <h1 className="mb-2 text-3xl">博客管理台</h1>
-      <p className="mb-8 text-sm text-[#666]">最小可用版：登录、发文、删文、刷新列表。</p>
+      <p className="mb-8 text-sm text-[#666]">
+        登录、发文、删文。请勿在公共环境使用弱密码；登录框不会预填任何凭据。
+      </p>
 
       <section className="mag-card mb-6 rounded-xl p-5">
         <h2 className="mb-4 text-xl">1) 登录</h2>
         <form onSubmit={onLogin} className="grid gap-3 md:grid-cols-3">
-          <input className="rounded-md border px-3 py-2" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="用户名" />
-          <input className="rounded-md border px-3 py-2" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="密码" type="password" />
+          <input
+            className="rounded-md border px-3 py-2"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="用户名"
+            autoComplete="username"
+          />
+          <input
+            className="rounded-md border px-3 py-2"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="密码"
+            type="password"
+            autoComplete="current-password"
+          />
           <button className="rounded-md bg-[#2d2d2d] px-4 py-2 text-white" type="submit">
             登录并加载文章
           </button>
