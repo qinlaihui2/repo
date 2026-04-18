@@ -1,7 +1,5 @@
-"use client";
-
-import { MarkdownCodeBlock } from "@/components/markdown-code-block";
 import { normalizeMarkdownForCodeFences } from "@/lib/normalize-markdown";
+import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { ReactNode } from "react";
@@ -9,11 +7,10 @@ import type { ReactNode } from "react";
 type CodeProps = {
   className?: string;
   children?: ReactNode;
-  node?: unknown;
 };
 
 /**
- * 将后端 content 按 Markdown 渲染；代码块用 react-syntax-highlighter，语言由 ```lang 指定。
+ * Markdown 正文：无语法高亮，代码块仅等宽 + 浅底边框（避免再引入高亮依赖）。
  */
 export function ArticleMarkdown({ content }: { content: string }) {
   const md = normalizeMarkdownForCodeFences(content);
@@ -23,20 +20,27 @@ export function ArticleMarkdown({ content }: { content: string }) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          // 避免再包一层 <pre>，由代码块组件自己布局
           pre({ children }) {
-            return <div className="not-prose contents">{children as ReactNode}</div>;
+            return (
+              <pre className="not-prose my-6 overflow-x-auto rounded-lg border border-border bg-muted/50 p-4 font-mono text-[0.8125rem] leading-relaxed text-foreground dark:bg-muted/30">
+                {children as ReactNode}
+              </pre>
+            );
           },
           code({ className, children }: CodeProps) {
             const text = String(children).replace(/\n$/, "");
-            const match = /language-(\w+)/.exec(className ?? "");
-            const language = match?.[1];
-            // 有 language- 或 多行无语言标识的围栏，都走高亮
-            if (language) {
-              return <MarkdownCodeBlock language={language} code={text} />;
-            }
-            if (text.includes("\n")) {
-              return <MarkdownCodeBlock language="text" code={text} />;
+            const isFence = Boolean(className?.startsWith("language-")) || text.includes("\n");
+            if (isFence) {
+              return (
+                <code
+                  className={cn(
+                    "block w-full whitespace-pre bg-transparent p-0 font-mono text-[0.8125rem] text-inherit",
+                    className
+                  )}
+                >
+                  {children}
+                </code>
+              );
             }
             return (
               <code className="rounded-md bg-muted/90 px-1.5 py-0.5 font-mono text-[0.88em] text-foreground dark:bg-muted">
