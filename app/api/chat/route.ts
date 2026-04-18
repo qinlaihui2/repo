@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
   const sanitized: ChatMessage[] = messages
     .slice(-MAX_MESSAGES)
     .filter((m): m is ChatMessage => m != null && typeof m === "object")
-    .map((m) => ({
+    .map((m): ChatMessage => ({
       role: m.role === "assistant" ? "assistant" : "user",
       content: String(m.content ?? "").slice(0, MAX_CONTENT_LENGTH),
     }))
