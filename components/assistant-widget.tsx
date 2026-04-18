@@ -155,7 +155,7 @@ export function AssistantWidget() {
           </form>
 
           <p className="border-t border-[#ebe6df] px-3 py-2 text-[10px] leading-snug text-[#888] dark:border-[#333] dark:text-[#777]">
-            仅供参考与阅读交流；引用未必为原文逐字，重要引用请核对原书版本。
+            Let your joy be the only imperative
           </p>
         </div>
       ) : null}
