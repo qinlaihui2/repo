@@ -2,8 +2,9 @@
 
 import { cn } from "@/lib/utils";
 import { useCallback, useState, useSyncExternalStore } from "react";
+import oneDark from "react-syntax-highlighter/dist/cjs/styles/prism/one-dark";
+import oneLight from "react-syntax-highlighter/dist/cjs/styles/prism/one-light";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark, oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 function subscribePrefersDark(callback: () => void) {
   const mq = window.matchMedia("(prefers-color-scheme: dark)");
