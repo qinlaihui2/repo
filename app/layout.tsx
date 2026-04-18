@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Geist } from "next/font/google";
 import "./globals.css";
+import { AssistantWidget } from "@/components/assistant-widget";
 import { ReadingProgress } from "@/components/reading-progress";
 import { cn } from "@/lib/utils";
 
@@ -48,6 +49,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col">
         <ReadingProgress />
         {children}
+        <AssistantWidget />
       </body>
     </html>
   );
