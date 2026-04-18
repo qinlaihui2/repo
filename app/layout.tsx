@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Geist } from "next/font/google";
 import "./globals.css";
-import "./prism-themes.css";
 import { ReadingProgress } from "@/components/reading-progress";
 import { cn } from "@/lib/utils";
 
