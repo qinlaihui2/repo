@@ -1,6 +1,7 @@
 "use client";
 
 import { MarkdownCodeBlock } from "@/components/markdown-code-block";
+import { normalizeMarkdownForCodeFences } from "@/lib/normalize-markdown";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { ReactNode } from "react";
@@ -15,6 +16,8 @@ type CodeProps = {
  * 将后端 content 按 Markdown 渲染；代码块用 react-syntax-highlighter，语言由 ```lang 指定。
  */
 export function ArticleMarkdown({ content }: { content: string }) {
+  const md = normalizeMarkdownForCodeFences(content);
+
   return (
     <div className="article-markdown text-[17px] leading-[1.85] text-[#333] md:text-lg md:leading-[1.9] dark:text-[#e8e6e3]">
       <ReactMarkdown
@@ -98,7 +101,7 @@ export function ArticleMarkdown({ content }: { content: string }) {
           },
         }}
       >
-        {content}
+        {md}
       </ReactMarkdown>
     </div>
   );
